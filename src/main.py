@@ -5,6 +5,7 @@ from src.auth.base_config import auth_backend
 from src.auth.models import User
 from src.auth.schemas import UserRead, UserCreate
 from src.auth.user_manager import get_user_manager
+from src.anime.router import router as anime_router
 
 app = FastAPI(title='Anime App')
 
@@ -25,9 +26,4 @@ app.include_router(
     tags=["auth"],
 )
 
-current_user = users.current_user()
-
-
-@app.get("/protected-route")
-def protected_route(user: User = Depends(current_user)):
-    return f"Hello, {user.email}"
+app.include_router(anime_router)

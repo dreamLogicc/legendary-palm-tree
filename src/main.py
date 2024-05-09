@@ -6,6 +6,7 @@ from src.auth.models import User
 from src.auth.schemas import UserRead, UserCreate
 from src.auth.user_manager import get_user_manager
 from src.anime.router import router as anime_router
+from src.likes.router import router as likes_router
 
 app = FastAPI(title='Anime App')
 
@@ -27,3 +28,5 @@ app.include_router(
 )
 
 app.include_router(anime_router)
+
+app.include_router(likes_router)
